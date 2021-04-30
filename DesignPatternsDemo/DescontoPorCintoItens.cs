@@ -11,7 +11,7 @@ namespace DesignPatternsDemo
         public Desconto Proximo { get; set; }
         public double Desconto(Orcamento orcamento)
         {
-            return orcamento.Itens.Count > 5 ? orcamento.Valor * 0.1 : Proximo.Desconto(orcamento);
+            return orcamento.Itens.Count > 5 ? orcamento.Valor * 10 : Proximo.Desconto(orcamento);
         }
     }
 }
