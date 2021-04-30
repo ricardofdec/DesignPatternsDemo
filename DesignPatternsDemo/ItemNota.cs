@@ -4,12 +4,12 @@ using System.Text;
 
 namespace DesignPatternsDemo
 {
-    public class EmpresaFilial
+    public class ItemNota
     {
         public String Nome { get; set; }
         public double Valor { get; set; }
 
-        public EmpresaFilial(String nome, double valor)
+        public ItemNota(String nome, double valor)
         {
             this.Nome = nome;
             this.Valor = valor;

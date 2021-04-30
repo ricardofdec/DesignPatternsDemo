@@ -1,6 +1,7 @@
 ﻿using DesignPatternsDemo.Interfaces;
 using DesignPatternsDemo.Models;
 using System;
+using System.Collections.Generic;
 
 namespace DesignPatternsDemo
 {
@@ -13,14 +14,20 @@ namespace DesignPatternsDemo
             Console.ReadKey();
         }
 
-        private static void EmpresaBuilder()
+        private static void notaBuilder()
         {
-            EmpresaBuilder criarEmpresa = new EmpresaBuilder();
-            criarEmpresa.ComCnpj("123.456.789/0001-12");
-            criarEmpresa.ComRazaoSocial("Mad Tech");
-            criarEmpresa.AdicionarFilial(new EmpresaFilial("Empresa F1", 100000.00));
-            criarEmpresa.AdicionarFilial(new EmpresaFilial("Empresa F2", 100000.00));
-            var empresa = criarEmpresa.Contruir();
+            NotaFiscalBuilder notaFiscalBuilder = new NotaFiscalBuilder();
+            notaFiscalBuilder.AdicionaAcao(new EnviadorDeEmail());
+            notaFiscalBuilder.AdicionaAcao(new NotaFiscalDao());
+            notaFiscalBuilder.Com("123.456.789/0001-12");
+            notaFiscalBuilder.ComRazaoSocial("Mad Tech");
+            notaFiscalBuilder.NotaFiscalItem = new List<ItemNota>()
+            {
+                new ItemNota("Item 1", 500.0),
+                new ItemNota("Item 2", 65.00)
+            };
+
+            var empresa = notaFiscalBuilder.Contruir();
             Console.WriteLine(empresa.RazaoSocial);
             Console.WriteLine(empresa.Cnpj);
 
