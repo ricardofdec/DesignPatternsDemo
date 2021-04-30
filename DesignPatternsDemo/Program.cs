@@ -8,7 +8,8 @@ namespace DesignPatternsDemo
     {
         static void Main(string[] args)
         {
-            EmpresaBuilder();
+            ChainOfResponsibility();
+
             Console.ReadKey();
         }
 
@@ -28,6 +29,32 @@ namespace DesignPatternsDemo
                 Console.WriteLine($"Empresa Filial: {item.Nome}");
             }
         }
+
+        public static void ChainOfResponsibility()
+        {
+            Orcamento orcamento = new Orcamento(500);
+            orcamento.Itens.Add(new Item("Iphone 12", 6500.00));
+
+            CalculadorDeDescontos calculadorDeDescontos = new CalculadorDeDescontos();
+
+
+            Console.WriteLine($"Desconto é de :{calculadorDeDescontos.Calcula(orcamento)}");
+        }
+
+        private static void Strategy_Investimento()
+        {
+            var context = new RealizadorDeInvestimentos();
+
+            context.Investir(new CONSERVADOR());
+            Console.WriteLine($"CONSERVADOR: {context.Calcular(20)}");
+
+            context.Investir(new MODERADO());
+            Console.WriteLine($"MODERADO: {context.Calcular(32)}");
+
+            context.Investir(new ARROJADO());
+            Console.WriteLine($"ARROJADO: {context.Calcular(68)}");
+        }
+
 
         private static void Strategy()
         {
